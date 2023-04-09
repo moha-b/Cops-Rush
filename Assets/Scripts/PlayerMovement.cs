@@ -2,26 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSpawnerController : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float playerSpeed = 5f;
-    [SerializeField] GameObject playerPrefab;
     // Variable to control the speed of player movement
     float xSpeed;
     // Specify the maximum position on the X-axis
     float maxPosition = 4.10f;
+
+    bool isPlayerRunning;
     // Start is called before the first frame update
     void Start()
     {
-        SpawnPlayer(5);
+        
     }
     // Update is called once per frame
     void Update()
     {
-        PlayerMovement();
+        if (isPlayerRunning)
+        {
+            return;
+        }
+        PlayerMovements();
     }
 
-    void PlayerMovement()
+    void PlayerMovements()
     {
         // Variable to store the horizontal touch/mouse input
         float touchX = 0;
@@ -51,19 +56,11 @@ public class PlayerSpawnerController : MonoBehaviour
         transform.position = playerMovement;
     }
 
-    public void SpawnPlayer(int playerCount)
+    private void OnTriggerEnter(Collider other)
     {
-        for (int i = 0; i < playerCount; i++)
+        if (other.tag == "Finish")
         {
-            // Instantiate the player prefab at the specified spawn position
-            GameObject playerInstance = Instantiate(playerPrefab, GetPlayerPosition(), Quaternion.identity, transform);
+            isPlayerRunning = true;
         }
-    }
-    
-    public Vector3 GetPlayerPosition()
-    {
-        Vector3 position = Random.insideUnitSphere * 0.1f;
-        Vector3 newPosition = position + transform.position;
-        return newPosition;
     }
 }
