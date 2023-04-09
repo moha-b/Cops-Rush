@@ -5,19 +5,35 @@ using UnityEngine;
 public class SpawnPlayer : MonoBehaviour
 {
     [SerializeField] GameObject playerPrefab;
+    [SerializeField] List<GameObject> playerList;
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    public void Spawn(int playerCount)
+    public void Spawn(int gateValue,GateType gateType)
     {
-        for (int i = 0; i < playerCount; i++)
+        if (gateType == GateType.ADDITION)
         {
-            // Instantiate the player prefab at the specified spawn position
-            GameObject playerInstance = Instantiate(playerPrefab, GetPlayerPosition(), Quaternion.identity, transform);
+            for (int i = 0; i < gateValue; i++)
+            {
+                // Instantiate the player prefab at the specified spawn position
+                GameObject playerInstance = Instantiate(playerPrefab, GetPlayerPosition(), Quaternion.identity, transform);
+                playerList.Add(playerInstance);
+            }
         }
+        else
+        {
+            int playerCount = (playerList.Count * gateValue) - playerList.Count;
+            for (int i = 0; playerCount > 0; i++)
+            {
+                // Instantiate the player prefab at the specified spawn position
+                GameObject playerInstance = Instantiate(playerPrefab, GetPlayerPosition(), Quaternion.identity, transform);
+                playerList.Add(playerInstance);
+            }
+        }
+        
     }
 
     public Vector3 GetPlayerPosition()
