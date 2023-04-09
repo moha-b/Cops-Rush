@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerSpawnerController : MonoBehaviour
 {
     [SerializeField] float playerSpeed = 5f;
+    [SerializeField] GameObject playerPrefab;
     // Variable to control the speed of player movement
     float xSpeed;
     // Specify the maximum position on the X-axis
@@ -12,7 +13,7 @@ public class PlayerSpawnerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        SpawnPlayer(5);
     }
     // Update is called once per frame
     void Update()
@@ -48,5 +49,21 @@ public class PlayerSpawnerController : MonoBehaviour
         Vector3 playerMovement = new Vector3(movementOnX, transform.position.y, transform.position.z + Time.deltaTime * playerSpeed);
         // Apply the calculated movement to the player's position
         transform.position = playerMovement;
+    }
+
+    public void SpawnPlayer(int playerCount)
+    {
+        for (int i = 0; i < playerCount; i++)
+        {
+            // Instantiate the player prefab at the specified spawn position
+            GameObject playerInstance = Instantiate(playerPrefab, GetPlayerPosition(), Quaternion.identity, transform);
+        }
+    }
+    
+    public Vector3 GetPlayerPosition()
+    {
+        Vector3 position = Random.insideUnitSphere * 0.1f;
+        Vector3 newPosition = position + transform.position;
+        return newPosition;
     }
 }
