@@ -23,13 +23,16 @@ public class SpawnPlayer : MonoBehaviour
                 playerList.Add(playerInstance);
             }
         }
-        else
+        else if(gateType == GateType.MULTIPLY)
         {
+            Debug.Log("Inside");
             int playerCount = (playerList.Count * gateValue) - playerList.Count;
-            for (int i = 0; playerCount > 0; i++)
+            for (int i = 0; i < playerCount; i++)
             {
                 // Instantiate the player prefab at the specified spawn position
+                Debug.Log("Instantiate");
                 GameObject playerInstance = Instantiate(playerPrefab, GetPlayerPosition(), Quaternion.identity, transform);
+                Debug.Log("Expand The List");
                 playerList.Add(playerInstance);
             }
         }

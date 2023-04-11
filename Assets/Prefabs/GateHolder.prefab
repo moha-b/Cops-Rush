@@ -75,8 +75,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280328186
-  m_fontColor: {r: 0.9811321, g: 0.6244053, b: 0.12402988, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -244,7 +244,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d6cc14bfea3b44e4cac4f2bf33d97db8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -341,7 +341,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d2762fee62eb6ba42be59906da54c529, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -452,8 +452,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280328186
-  m_fontColor: {r: 0.9811321, g: 0.6244053, b: 0.12402988, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -522,7 +522,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7535774819175727542}
   - component: {fileID: 4837393831385073267}
-  - component: {fileID: 149481792737690773}
+  - component: {fileID: 1000535465}
   m_Layer: 0
   m_Name: Right Gate
   m_TagString: Untagged
@@ -560,8 +560,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 506561c4f99df4b42ab4188551b7c8f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
---- !u!65 &149481792737690773
+  gateType: 1
+  text: {fileID: 41504901221771486}
+--- !u!65 &1000535465
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -572,8 +573,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.125958, y: 1.799994, z: 1}
-  m_Center: {x: -2.3834903, y: 1.1942749, z: 0}
+  m_Size: {x: 4.598251, y: 1.9813418, z: 0.5332308}
+  m_Center: {x: -2.4299877, y: 1.238359, z: -0.013469696}
 --- !u!1 &7535774819434236716
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,7 +585,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7535774819434236717}
   - component: {fileID: 5611258099447438989}
-  - component: {fileID: 1063501180383524133}
+  - component: {fileID: 2013448802}
   m_Layer: 0
   m_Name: Left Gate
   m_TagString: Untagged
@@ -622,8 +623,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 506561c4f99df4b42ab4188551b7c8f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
---- !u!65 &1063501180383524133
+  gateType: 0
+  text: {fileID: 7535774819138315673}
+--- !u!65 &2013448802
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -634,8 +636,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.125958, y: 1.799994, z: 1}
-  m_Center: {x: -2.3834903, y: 1.1942749, z: 0}
+  m_Size: {x: 4.6242685, y: 2.0763698, z: 0.39495564}
+  m_Center: {x: -2.443388, y: 1.2158873, z: -0.056839943}
 --- !u!1 &7535774819840715365
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,7 +701,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d6cc14bfea3b44e4cac4f2bf33d97db8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -897,7 +899,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d2762fee62eb6ba42be59906da54c529, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -995,7 +997,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d2762fee62eb6ba42be59906da54c529, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1194,7 +1196,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d2762fee62eb6ba42be59906da54c529, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

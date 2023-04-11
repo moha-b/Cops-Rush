@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,13 +11,13 @@ public class GateController : MonoBehaviour
     SpawnPlayer spawnPlayer;
     GateHolderController gateController;
     int gateValue;
-    GateType gateType;
-    public TMPro.TextMeshPro text;
+    public GateType gateType;
+    public TextMeshProUGUI text;
     // Start is called before the first frame update
     void Start()
     {
         gateValue = 2;
-        spawnPlayer = GameObject.Find("Player Spawner").GetComponent<SpawnPlayer>();
+        spawnPlayer = GameObject.FindGameObjectWithTag("PlayerSpawner").GetComponent<SpawnPlayer>();
         gateController = transform.parent.gameObject.GetComponent<GateHolderController>();
         UpdateText();
     }
@@ -25,9 +26,12 @@ public class GateController : MonoBehaviour
         if ( other.tag == "Player" && isPlayerTouchGate)
         {
             isPlayerTouchGate = false;
+            Debug.Log("Close The Gate");
             gateController.CloseGate();
-            Destroy(gameObject);
-            spawnPlayer.Spawn(2,gateType);
+            Debug.Log("Spawn Players");
+            spawnPlayer.Spawn(2, gateType);
+            Debug.Log("Destroy");
+            Destroy(this.gameObject);
         }
     }
 
