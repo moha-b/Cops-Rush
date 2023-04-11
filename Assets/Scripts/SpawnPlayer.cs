@@ -39,6 +39,12 @@ public class SpawnPlayer : MonoBehaviour
         
     }
 
+    public void DestroyCop(GameObject cop)
+    {
+        playerList.Remove(cop);
+        Destroy(cop);
+    }
+
     public Vector3 GetPlayerPosition()
     {
         Vector3 position = Random.insideUnitSphere * 0.1f;
