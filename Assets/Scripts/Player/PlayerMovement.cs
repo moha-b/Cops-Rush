@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -62,5 +63,20 @@ public class PlayerMovement : MonoBehaviour
         {
             isPlayerRunning = true;
         }
+    }
+
+    public void EnemyDetected(GameObject enemy)
+    {
+        isPlayerRunning = false;
+    }
+
+    private void LookAtEnemy(GameObject enemy)
+    {
+        Vector3 direction = enemy.transform.position - transform.position ;
+        Quaternion lookAt = Quaternion.LookRotation(direction);
+        lookAt.x = 0;
+        lookAt.z = 0;
+
+        transform.rotation = lookAt;
     }
 }
