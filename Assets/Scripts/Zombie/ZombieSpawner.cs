@@ -67,6 +67,13 @@ public class ZombieSpawner : MonoBehaviour
         spawnPlayer.KillCop(cop);
     }
 
+    public void ZombieGotShoot(GameObject zombie)
+    {
+        zombieList.Remove(zombie);
+        Destroy(zombie);
+        CheckZombieCount();
+    }
+
     private void CheckZombieCount()
     {
         if(zombieList.Count <= 0)

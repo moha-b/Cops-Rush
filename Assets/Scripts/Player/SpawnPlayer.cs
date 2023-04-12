@@ -114,6 +114,7 @@ public class SpawnPlayer : MonoBehaviour
     {
         playerList.Remove(cop);
         Destroy(cop);
+        DetectCopCount();
     }
 
     public void AllZomibesKilled()
@@ -122,7 +123,19 @@ public class SpawnPlayer : MonoBehaviour
         MovePlayer();
     }
 
-    
+    private void DetectCopCount()
+    {
+        if (playerList.Count <= 0)
+        {
+            StopPlayer();
+        }
+    }
+
+    private void StopPlayer()
+    {
+        isPlayerRunning = true;
+    }
+
     private void MovePlayer()
     {
         isPlayerRunning = false;
@@ -139,7 +152,7 @@ public class SpawnPlayer : MonoBehaviour
         for(int i = 0;i < playerList.Count;i++)
         {
             PlayerController cop = playerList[i].GetComponent<PlayerController>();
-            cop.StartShootingAnim();
+            cop.StartShooting();
         }
     }
     private void StartRunning()
@@ -147,7 +160,7 @@ public class SpawnPlayer : MonoBehaviour
         for (int i = 0; i < playerList.Count; i++)
         {
             PlayerController cop = playerList[i].GetComponent<PlayerController>();
-            cop.StartRunningAnim();
+            cop.StartRunning();
         }
     }
 

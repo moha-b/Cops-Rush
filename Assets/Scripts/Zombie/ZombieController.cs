@@ -27,4 +27,12 @@ public class ZombieController : MonoBehaviour
             spawner.ZombieAttackTheCops(cop: collision.gameObject, zombie: gameObject);
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Bullet")
+        {
+            spawner.ZombieGotShoot(gameObject);
+            Destroy(other.gameObject);
+        }
+    }
 }
