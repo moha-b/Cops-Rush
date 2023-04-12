@@ -15,10 +15,6 @@ public class ZombieSpawner : MonoBehaviour
     }
     void Start()
     {
-        if (spawnPlayer == null)
-        {
-            Debug.Log("Spawn Player : " + spawnPlayer);
-        }
         Spawn(3);
     }
     public void Spawn(int zombies)
@@ -45,7 +41,7 @@ public class ZombieSpawner : MonoBehaviour
         if(other.tag == "Player")
         {
             isZombieAttack = true;
-            spawnPlayer.EnemyDetected(other.gameObject);
+            spawnPlayer.EnemyDetected(gameObject);
             LookAtPlayer(other.gameObject);
             GetComponent<BoxCollider>().enabled = false;
         }
@@ -53,11 +49,29 @@ public class ZombieSpawner : MonoBehaviour
 
     private void LookAtPlayer(GameObject target)
     {
+        // Calculate direction from this object's position to the player's position
         Vector3 direction = target.transform.position - transform.position;
-        Quaternion lookAt = Quaternion.LookRotation(direction);
-        lookAt.x = 0;
-        lookAt.z = 0;
 
-        transform.rotation = lookAt;
+        // Calculate rotation to look at the direction
+        Quaternion lookAtRotation = Quaternion.LookRotation(direction);
+
+        // Set rotation for this object
+        transform.rotation = lookAtRotation;
+    }
+
+    public void ZombieAttackTheCops(GameObject cop, GameObject zombie)
+    {
+        zombieList.Remove(zombie);
+        Destroy(zombie);
+        CheckZombieCount();
+        spawnPlayer.KillCop(cop);
+    }
+
+    private void CheckZombieCount()
+    {
+        if(zombieList.Count <= 0)
+        {
+            spawnPlayer.AllZomibesKilled();
+        }
     }
 }

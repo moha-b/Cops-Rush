@@ -16,7 +16,7 @@ public class GateController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gateValue = 2;
+        gateValue = 5;
         spawnPlayer = GameObject.FindGameObjectWithTag("PlayerSpawner").GetComponent<SpawnPlayer>();
         gateController = transform.parent.gameObject.GetComponent<GateHolderController>();
         UpdateText();
@@ -29,7 +29,7 @@ public class GateController : MonoBehaviour
             Debug.Log("Close The Gate");
             gateController.CloseGate();
             Debug.Log("Spawn Players");
-            spawnPlayer.Spawn(2, gateType);
+            spawnPlayer.Spawn(gateValue, gateType);
             Debug.Log("Destroy");
             Destroy(this.gameObject);
         }

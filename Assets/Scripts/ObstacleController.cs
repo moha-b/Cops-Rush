@@ -15,7 +15,7 @@ public class ObstacleController : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            SpawnPlayer.DestroyCop(other.gameObject);
+            SpawnPlayer.KillCop(other.gameObject);
         }
     }
 }

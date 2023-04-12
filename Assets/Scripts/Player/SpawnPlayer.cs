@@ -69,11 +69,13 @@ public class SpawnPlayer : MonoBehaviour
     public void EnemyDetected(GameObject enemy)
     {
         isPlayerRunning = true;
+        LookAtEnemy(enemy);
+        StartShooting();
     }
 
     private void LookAtEnemy(GameObject enemy)
     {
-        Vector3 direction = transform.position - enemy.transform.position;
+        Vector3 direction = enemy.transform.position - transform.position;
         Quaternion lookAt = Quaternion.LookRotation(direction);
         lookAt.x = 0;
         lookAt.z = 0;
@@ -108,10 +110,45 @@ public class SpawnPlayer : MonoBehaviour
         
     }
 
-    public void DestroyCop(GameObject cop)
+    public void KillCop(GameObject cop)
     {
         playerList.Remove(cop);
         Destroy(cop);
+    }
+
+    public void AllZomibesKilled()
+    {
+        LookForward();
+        MovePlayer();
+    }
+
+    
+    private void MovePlayer()
+    {
+        isPlayerRunning = false;
+        StartRunning();
+    }
+
+    private void LookForward()
+    {
+        transform.rotation = Quaternion.identity;
+    }
+
+    private void StartShooting()
+    {
+        for(int i = 0;i < playerList.Count;i++)
+        {
+            PlayerController cop = playerList[i].GetComponent<PlayerController>();
+            cop.StartShootingAnim();
+        }
+    }
+    private void StartRunning()
+    {
+        for (int i = 0; i < playerList.Count; i++)
+        {
+            PlayerController cop = playerList[i].GetComponent<PlayerController>();
+            cop.StartRunningAnim();
+        }
     }
 
     public Vector3 GetPlayerPosition()

@@ -208,8 +208,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombiePrefab: {fileID: 856601670117699726, guid: b14953694d54eea4eb66f453e525024c, type: 3}
-  zombieList:
-  - {fileID: 856601670117699726, guid: b14953694d54eea4eb66f453e525024c, type: 3}
+  zombieList: []
+  isZombieAttack: 0
 --- !u!65 &286861850
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -221,8 +221,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.768633, y: 0.5, z: 7.8093915}
-  m_Center: {x: 0.24412012, y: 0, z: 0.40469575}
+  m_Size: {x: 6.1, y: 0.5, z: 7.8093915}
+  m_Center: {x: 0, y: 0, z: 0.40469575}
 --- !u!1 &335817951
 GameObject:
   m_ObjectHideFlags: 0
