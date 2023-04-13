@@ -16,7 +16,7 @@ public class SpawnPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        isPlayerRunning = true;
     }
     // Update is called once per frame
     void Update()
@@ -63,6 +63,7 @@ public class SpawnPlayer : MonoBehaviour
         if (other.tag == "Finish")
         {
             isPlayerRunning = true;
+            GameManager.Instance.ShowWinPanel();
         }
     }
 
@@ -128,6 +129,7 @@ public class SpawnPlayer : MonoBehaviour
         if (playerList.Count <= 0)
         {
             StopPlayer();
+            GameManager.Instance.ShowFailPanel();
         }
     }
 
@@ -136,7 +138,7 @@ public class SpawnPlayer : MonoBehaviour
         isPlayerRunning = true;
     }
 
-    private void MovePlayer()
+    public void MovePlayer()
     {
         isPlayerRunning = false;
         StartRunning();
