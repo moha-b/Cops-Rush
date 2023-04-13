@@ -11,7 +11,8 @@ public class SpawnPlayer : MonoBehaviour
     float xSpeed;
     // Specify the maximum position on the X-axis
     float maxPosition = 4.10f;
-
+    public AudioSource audioSource;
+    public AudioClip gateClip, congratesClip, failClip, shootClip;
     bool isPlayerRunning;
     // Start is called before the first frame update
     void Start()
@@ -64,6 +65,8 @@ public class SpawnPlayer : MonoBehaviour
         {
             isPlayerRunning = true;
             GameManager.Instance.ShowWinPanel();
+            PlayAudio(congratesClip);
+            StopBackgroundMusic();
         }
     }
 
@@ -86,6 +89,7 @@ public class SpawnPlayer : MonoBehaviour
 
     public void Spawn(int gateValue,GateType gateType)
     {
+        PlayAudio(gateClip);
         if (gateType == GateType.ADDITION)
         {
             for (int i = 0; i < gateValue; i++)
@@ -97,14 +101,11 @@ public class SpawnPlayer : MonoBehaviour
         }
         else if(gateType == GateType.MULTIPLY)
         {
-            Debug.Log("Inside");
             int playerCount = (playerList.Count * gateValue) - playerList.Count;
             for (int i = 0; i < playerCount; i++)
             {
                 // Instantiate the player prefab at the specified spawn position
-                Debug.Log("Instantiate");
                 GameObject playerInstance = Instantiate(playerPrefab, GetPlayerPosition(), Quaternion.identity, transform);
-                Debug.Log("Expand The List");
                 playerList.Add(playerInstance);
             }
         }
@@ -130,6 +131,8 @@ public class SpawnPlayer : MonoBehaviour
         {
             StopPlayer();
             GameManager.Instance.ShowFailPanel();
+            PlayAudio(failClip);
+            StopBackgroundMusic();
         }
     }
 
@@ -155,6 +158,7 @@ public class SpawnPlayer : MonoBehaviour
         {
             PlayerController cop = playerList[i].GetComponent<PlayerController>();
             cop.StartShooting();
+            PlayAudio(shootClip);
         }
     }
     private void StartRunning()
@@ -171,5 +175,17 @@ public class SpawnPlayer : MonoBehaviour
         Vector3 position = Random.insideUnitSphere * 0.1f;
         Vector3 newPosition = position + transform.position;
         return newPosition;
+    }
+
+    public void PlayAudio(AudioClip clip)
+    {
+        if(audioSource != null)
+        {
+            audioSource.PlayOneShot(clip,0.5f);
+        }
+    }
+    private void StopBackgroundMusic()
+    {
+        Camera.main.GetComponent<AudioSource>().Stop();
     }
 }
