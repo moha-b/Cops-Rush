@@ -1213,6 +1213,11 @@ MonoBehaviour:
   playerList:
   - {fileID: 2029869654}
   playerSpeed: 5
+  audioSource: {fileID: 275367939}
+  gateClip: {fileID: 8300000, guid: bc73c26acd33db94d9b0364cf657da1f, type: 3}
+  congratesClip: {fileID: 8300000, guid: d796b71420eabd14c90c84f26eb34f32, type: 3}
+  failClip: {fileID: 8300000, guid: 2524766b1871cd14abe8f46f4906557e, type: 3}
+  shootClip: {fileID: 8300000, guid: b3cc748c8e56877468096028fe00047b, type: 3}
 --- !u!1 &881636661
 GameObject:
   m_ObjectHideFlags: 0
