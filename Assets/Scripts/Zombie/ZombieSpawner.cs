@@ -15,7 +15,7 @@ public class ZombieSpawner : MonoBehaviour
     }
     void Start()
     {
-        Spawn(3);
+        Spawn(8);
     }
     public void Spawn(int zombies)
     {

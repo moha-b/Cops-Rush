@@ -1161,6 +1161,9 @@ GameObject:
   - component: {fileID: 742329080}
   - component: {fileID: 742329082}
   - component: {fileID: 742329083}
+  - component: {fileID: 742329084}
+  - component: {fileID: 742329085}
+  - component: {fileID: 742329086}
   m_Layer: 0
   m_Name: Player Spawner
   m_TagString: PlayerSpawner
@@ -1212,12 +1215,49 @@ MonoBehaviour:
   playerPrefab: {fileID: 2029869654}
   playerList:
   - {fileID: 2029869654}
+--- !u!114 &742329084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742329079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 285df824d2011f6418a6a61acaee06c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   playerSpeed: 5
-  audioSource: {fileID: 275367939}
-  gateClip: {fileID: 8300000, guid: bc73c26acd33db94d9b0364cf657da1f, type: 3}
-  congratesClip: {fileID: 8300000, guid: d796b71420eabd14c90c84f26eb34f32, type: 3}
-  failClip: {fileID: 8300000, guid: 2524766b1871cd14abe8f46f4906557e, type: 3}
-  shootClip: {fileID: 8300000, guid: b3cc748c8e56877468096028fe00047b, type: 3}
+  isPlayerRunning: 0
+--- !u!114 &742329085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742329079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa3e94bee9b685b4091c92c50058825c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &742329086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742329079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3150a1b32e967d141ae9aac5c4ddbfca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  gateClip: {fileID: 0}
+  congratesClip: {fileID: 0}
+  failClip: {fileID: 0}
+  shootClip: {fileID: 0}
 --- !u!1 &881636661
 GameObject:
   m_ObjectHideFlags: 0

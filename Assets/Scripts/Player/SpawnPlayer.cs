@@ -5,91 +5,42 @@ using UnityEngine;
 public class SpawnPlayer : MonoBehaviour
 {
     [SerializeField] GameObject playerPrefab;
-    [SerializeField] List<GameObject> playerList;
-    [SerializeField] float playerSpeed = 5f;
-    // Variable to control the speed of player movement
-    float xSpeed;
-    // Specify the maximum position on the X-axis
-    float maxPosition = 4.10f;
-    public AudioSource audioSource;
-    public AudioClip gateClip, congratesClip, failClip, shootClip;
-    bool isPlayerRunning;
+    public List<GameObject> playerList;
+
+    // Scripts
+    PlayerMovement playerMovement;
+    PlayerRotation playerRotation;
+    PlayerAudio playerAudio;
+    
     // Start is called before the first frame update
     void Start()
     {
-        isPlayerRunning = true;
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        if (isPlayerRunning)
-        {
-            return;
-        }
-        PlayerMovements();
-    }
-
-    void PlayerMovements()
-    {
-        // Variable to store the horizontal touch/mouse input
-        float touchX = 0;
-        // Variable to store the resulting horizontal movement
-        float movementOnX = 0;
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
-        {
-            // Set the horizontal movement speed
-            xSpeed = 250;
-            // Get the horizontal delta position of the touch input
-            touchX = Input.GetTouch(0).deltaPosition.x / Screen.width;
-        }
-        else if (Input.GetMouseButton(0))
-        {
-            // Set the horizontal movement speed
-            xSpeed = 500;
-            // Get the horizontal input axis of the mouse
-            touchX = Input.GetAxis("Mouse X");
-        }
-        // Calculate the resulting horizontal movement
-        movementOnX = transform.position.x + xSpeed * touchX * Time.deltaTime;
-        // Clamp the resulting movement within the maximum position range
-        movementOnX = Mathf.Clamp(movementOnX, -maxPosition, maxPosition);
-        // Calculate the player's movement along the X-axis based on touch input or mouse input
-        Vector3 playerMovement = new Vector3(movementOnX, transform.position.y, transform.position.z + Time.deltaTime * playerSpeed);
-        // Apply the calculated movement to the player's position
-        transform.position = playerMovement;
+        playerMovement = GetComponent<PlayerMovement>();
+        playerRotation = GetComponent<PlayerRotation>();
+        playerAudio = GetComponent<PlayerAudio>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Finish")
         {
-            isPlayerRunning = true;
+            playerMovement.StopPlayer();
             GameManager.Instance.ShowWinPanel();
-            PlayAudio(congratesClip);
-            StopBackgroundMusic();
+            playerAudio.PlayCongratesSound();
         }
     }
 
     public void EnemyDetected(GameObject enemy)
     {
-        isPlayerRunning = true;
-        LookAtEnemy(enemy);
+        playerMovement.StopPlayer();
+        playerRotation.LookAtEnemy(enemy);
         StartShooting();
     }
 
-    private void LookAtEnemy(GameObject enemy)
-    {
-        Vector3 direction = enemy.transform.position - transform.position;
-        Quaternion lookAt = Quaternion.LookRotation(direction);
-        lookAt.x = 0;
-        lookAt.z = 0;
-
-        transform.rotation = lookAt;
-    }
 
     public void Spawn(int gateValue,GateType gateType)
     {
-        PlayAudio(gateClip);
+        playerAudio.PlayGateSound();
         if (gateType == GateType.ADDITION)
         {
             for (int i = 0; i < gateValue; i++)
@@ -121,35 +72,19 @@ public class SpawnPlayer : MonoBehaviour
 
     public void AllZomibesKilled()
     {
-        LookForward();
-        MovePlayer();
+        playerRotation.LookForward();
+        playerMovement.MovePlayer();
     }
 
     private void DetectCopCount()
     {
         if (playerList.Count <= 0)
         {
-            StopPlayer();
+            playerMovement.StopPlayer();
             GameManager.Instance.ShowFailPanel();
-            PlayAudio(failClip);
-            StopBackgroundMusic();
+            playerAudio.PlayFailSound();
+            
         }
-    }
-
-    private void StopPlayer()
-    {
-        isPlayerRunning = true;
-    }
-
-    public void MovePlayer()
-    {
-        isPlayerRunning = false;
-        StartRunning();
-    }
-
-    private void LookForward()
-    {
-        transform.rotation = Quaternion.identity;
     }
 
     private void StartShooting()
@@ -158,7 +93,7 @@ public class SpawnPlayer : MonoBehaviour
         {
             PlayerController cop = playerList[i].GetComponent<PlayerController>();
             cop.StartShooting();
-            PlayAudio(shootClip);
+            playerAudio.PlayShootingSound();
         }
     }
     private void StartRunning()
@@ -175,17 +110,5 @@ public class SpawnPlayer : MonoBehaviour
         Vector3 position = Random.insideUnitSphere * 0.1f;
         Vector3 newPosition = position + transform.position;
         return newPosition;
-    }
-
-    public void PlayAudio(AudioClip clip)
-    {
-        if(audioSource != null)
-        {
-            audioSource.PlayOneShot(clip,0.5f);
-        }
-    }
-    private void StopBackgroundMusic()
-    {
-        Camera.main.GetComponent<AudioSource>().Stop();
     }
 }

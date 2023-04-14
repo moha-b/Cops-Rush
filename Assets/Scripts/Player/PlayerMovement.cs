@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -10,24 +9,24 @@ public class PlayerMovement : MonoBehaviour
     float xSpeed;
     // Specify the maximum position on the X-axis
     float maxPosition = 4.10f;
-
-    bool isPlayerRunning;
+    SpawnPlayer spawnPlayer;
+    public bool isPlayerRunning;
     // Start is called before the first frame update
     void Start()
     {
-        
+        spawnPlayer = GetComponent<SpawnPlayer>();
     }
     // Update is called once per frame
     void Update()
     {
-        if (isPlayerRunning)
+        if (isPlayerRunning == false)
         {
             return;
         }
-        PlayerMovements();
+        Movements();
     }
 
-    void PlayerMovements()
+    void Movements()
     {
         // Variable to store the horizontal touch/mouse input
         float touchX = 0;
@@ -61,22 +60,27 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.tag == "Finish")
         {
-            isPlayerRunning = true;
+            isPlayerRunning = false;
         }
     }
 
-    public void EnemyDetected(GameObject enemy)
+    public void StopPlayer()
     {
         isPlayerRunning = false;
     }
 
-    private void LookAtEnemy(GameObject enemy)
+    public void MovePlayer()
     {
-        Vector3 direction = enemy.transform.position - transform.position ;
-        Quaternion lookAt = Quaternion.LookRotation(direction);
-        lookAt.x = 0;
-        lookAt.z = 0;
-
-        transform.rotation = lookAt;
+        isPlayerRunning = true;
+        StartRunning();
     }
+    private void StartRunning()
+    {
+        for (int i = 0; i < spawnPlayer.playerList.Count; i++)
+        {
+            PlayerController cop = spawnPlayer.playerList[i].GetComponent<PlayerController>();
+            cop.StartRunning();
+        }
+    }
+
 }
