@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAudio : MonoBehaviour
+public class AudioController : MonoBehaviour
 {
-    public AudioSource audioSource;
+    public AudioSource audioSource,backgroundAudio;
     public AudioClip gateClip, congratesClip, failClip, shootClip;
 
     public void PlayCongratesSound()
@@ -38,6 +38,6 @@ public class PlayerAudio : MonoBehaviour
     }
     private void StopBackgroundMusic()
     {
-        Camera.main.GetComponent<AudioSource>().Stop();
+        backgroundAudio.Stop();
     }
 }

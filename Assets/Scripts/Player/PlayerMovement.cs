@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
     {
         for (int i = 0; i < spawnPlayer.playerList.Count; i++)
         {
-            PlayerController cop = spawnPlayer.playerList[i].GetComponent<PlayerController>();
+            CopController cop = spawnPlayer.playerList[i].GetComponent<CopController>();
             cop.StartRunning();
         }
     }

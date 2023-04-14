@@ -9,6 +9,7 @@ public class GateController : MonoBehaviour
 {
     bool isPlayerTouchGate = true;
     SpawnPlayer spawnPlayer;
+    PlayerSpawning playerSpawning;
     GateHolderController gateController;
     int gateValue;
     public GateType gateType;
@@ -18,6 +19,7 @@ public class GateController : MonoBehaviour
     {
         gateValue = 5;
         spawnPlayer = GameObject.FindGameObjectWithTag("PlayerSpawner").GetComponent<SpawnPlayer>();
+        playerSpawning = GameObject.FindGameObjectWithTag("PlayerSpawner").GetComponent<PlayerSpawning>();
         gateController = transform.parent.gameObject.GetComponent<GateHolderController>();
         UpdateText();
     }
@@ -26,11 +28,8 @@ public class GateController : MonoBehaviour
         if ( other.tag == "Player" && isPlayerTouchGate)
         {
             isPlayerTouchGate = false;
-            Debug.Log("Close The Gate");
             gateController.CloseGate();
-            Debug.Log("Spawn Players");
-            spawnPlayer.Spawn(gateValue, gateType);
-            Debug.Log("Destroy");
+            playerSpawning.Spawn(gateValue, gateType);
             Destroy(this.gameObject);
         }
     }

@@ -10,14 +10,14 @@ public class SpawnPlayer : MonoBehaviour
     // Scripts
     PlayerMovement playerMovement;
     PlayerRotation playerRotation;
-    PlayerAudio playerAudio;
+    AudioController audioController;
     
     // Start is called before the first frame update
     void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerRotation = GetComponent<PlayerRotation>();
-        playerAudio = GetComponent<PlayerAudio>();
+        audioController = GameObject.Find("AudioSource").GetComponent<AudioController>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,7 +26,7 @@ public class SpawnPlayer : MonoBehaviour
         {
             playerMovement.StopPlayer();
             GameManager.Instance.ShowWinPanel();
-            playerAudio.PlayCongratesSound();
+            audioController.PlayCongratesSound();
         }
     }
 
@@ -40,7 +40,7 @@ public class SpawnPlayer : MonoBehaviour
 
     public void Spawn(int gateValue,GateType gateType)
     {
-        playerAudio.PlayGateSound();
+        audioController.PlayGateSound();
         if (gateType == GateType.ADDITION)
         {
             for (int i = 0; i < gateValue; i++)
@@ -82,7 +82,7 @@ public class SpawnPlayer : MonoBehaviour
         {
             playerMovement.StopPlayer();
             GameManager.Instance.ShowFailPanel();
-            playerAudio.PlayFailSound();
+            audioController.PlayFailSound();
             
         }
     }
@@ -91,16 +91,16 @@ public class SpawnPlayer : MonoBehaviour
     {
         for(int i = 0;i < playerList.Count;i++)
         {
-            PlayerController cop = playerList[i].GetComponent<PlayerController>();
+            CopController cop = playerList[i].GetComponent<CopController>();
             cop.StartShooting();
-            playerAudio.PlayShootingSound();
+            audioController.PlayShootingSound();
         }
     }
     private void StartRunning()
     {
         for (int i = 0; i < playerList.Count; i++)
         {
-            PlayerController cop = playerList[i].GetComponent<PlayerController>();
+            CopController cop = playerList[i].GetComponent<CopController>();
             cop.StartRunning();
         }
     }

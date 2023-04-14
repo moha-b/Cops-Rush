@@ -159,8 +159,11 @@ GameObject:
   - component: {fileID: 2029869656}
   - component: {fileID: 2029869655}
   - component: {fileID: 2029869662}
+  - component: {fileID: 8706587534195932413}
+  - component: {fileID: 2029869664}
+  - component: {fileID: 2029869665}
   m_Layer: 0
-  m_Name: Police
+  m_Name: Cop
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -247,8 +250,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a9885324a079f84c9062afea342983d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8706587534195932413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8619338778009079851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf4133c59ea42bb41a06278bd0040cc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2029869664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8619338778009079851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eadfcd4e5aaab4f4186be237ae6f4367, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2029869665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8619338778009079851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d06b65ffac4aeee44b540afdee5f4e98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   bullet: {fileID: 5689450973616959451, guid: a5b944ff0c1dd9b40a3a1c4365dd2ce1, type: 3}
   bulletTransform: {fileID: 8900475362468441194}
+  bulletSpeed: 10
+  isShootingOn: 0
 --- !u!1 &8619338778009079855
 GameObject:
   m_ObjectHideFlags: 0
