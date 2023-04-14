@@ -9,14 +9,8 @@ public class PlayerMovement : MonoBehaviour
     float xSpeed;
     // Specify the maximum position on the X-axis
     float maxPosition = 4.10f;
-    SpawnPlayer spawnPlayer;
     public bool isPlayerRunning;
-    // Start is called before the first frame update
-    void Start()
-    {
-        spawnPlayer = GetComponent<SpawnPlayer>();
-    }
-    // Update is called once per frame
+
     void Update()
     {
         if (isPlayerRunning == false)
@@ -56,14 +50,6 @@ public class PlayerMovement : MonoBehaviour
         transform.position = playerMovement;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Finish")
-        {
-            isPlayerRunning = false;
-        }
-    }
-
     public void StopPlayer()
     {
         isPlayerRunning = false;
@@ -72,15 +58,5 @@ public class PlayerMovement : MonoBehaviour
     public void MovePlayer()
     {
         isPlayerRunning = true;
-        StartRunning();
     }
-    private void StartRunning()
-    {
-        for (int i = 0; i < spawnPlayer.playerList.Count; i++)
-        {
-            CopController cop = spawnPlayer.playerList[i].GetComponent<CopController>();
-            cop.StartRunning();
-        }
-    }
-
 }

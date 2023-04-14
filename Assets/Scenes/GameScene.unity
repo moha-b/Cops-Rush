@@ -464,8 +464,9 @@ GameObject:
   - component: {fileID: 286861848}
   - component: {fileID: 286861849}
   - component: {fileID: 286861850}
+  - component: {fileID: 286861851}
   m_Layer: 0
-  m_Name: Zombie Spawner
+  m_Name: Enemy Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -500,6 +501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zombiePrefab: {fileID: 856601670117699726, guid: b14953694d54eea4eb66f453e525024c, type: 3}
   zombieList: []
+  enemysNumber: 5
   isZombieAttack: 0
 --- !u!65 &286861850
 BoxCollider:
@@ -514,6 +516,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.1, y: 0.5, z: 7.8093915}
   m_Center: {x: 0, y: 0, z: 0.40469575}
+--- !u!114 &286861851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286861847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e251059c5953f8249897732bc62da839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &335817951
 GameObject:
   m_ObjectHideFlags: 0
@@ -1328,9 +1342,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 871b9b2f18b18bb4bb1442bb1e27fe81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 2029869654}
-  playerList:
-  - {fileID: 2029869654}
 --- !u!114 &742329084
 MonoBehaviour:
   m_ObjectHideFlags: 0

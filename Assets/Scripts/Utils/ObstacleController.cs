@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class ObstacleController : MonoBehaviour
 {
-    SpawnPlayer SpawnPlayer;
+    PlayerController playerController;
     // Start is called before the first frame update
     void Start()
     {
-        SpawnPlayer = GameObject.FindGameObjectWithTag("PlayerSpawner").GetComponent<SpawnPlayer>();
+        playerController = GameObject.Find("Player Spawner").GetComponent<PlayerController>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            SpawnPlayer.KillCop(other.gameObject);
+            playerController.KillCop(other.gameObject);
         }
     }
 }

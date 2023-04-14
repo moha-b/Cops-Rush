@@ -4,22 +4,8 @@ using UnityEngine;
 
 public class PlayerSpawning : MonoBehaviour
 {
-    private static PlayerSpawning _instance; // private static instance field
-    public static PlayerSpawning Instance { get { return _instance; } } // public static instance property
-
     [SerializeField] GameObject copPrefab;
     public List<GameObject> copList;
-
-    private void Awake()
-    {
-        // Ensure only one instance of the class is created
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-        _instance = this;
-    }
 
     public void Spawn(int gateValue, GateType gateType)
     {
@@ -50,5 +36,21 @@ public class PlayerSpawning : MonoBehaviour
         Vector3 position = Random.insideUnitSphere * 0.1f;
         Vector3 newPosition = position + transform.position;
         return newPosition;
+    }
+
+    public void RemoveFromList(GameObject cop)
+    {
+        copList.Remove(cop);
+        Destroy(cop);
+    }
+
+    public int CopsNumber()
+    {
+        return copList.Count;
+    }
+
+    public GameObject getCop(int i)
+    {
+        return copList[i];
     }
 }
