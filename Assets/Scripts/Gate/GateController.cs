@@ -8,16 +8,15 @@ public enum GateType { MULTIPLY, ADDITION };
 public class GateController : MonoBehaviour
 {
     bool isPlayerTouchGate = true;
-    SpawnPlayer spawnPlayer;
+    PlayerSpawning playerSpawning;
     GateHolderController gateController;
-    int gateValue;
+    public int gateValue = 2;
     public GateType gateType;
     public TextMeshProUGUI text;
     // Start is called before the first frame update
     void Start()
     {
-        gateValue = 5;
-        spawnPlayer = GameObject.FindGameObjectWithTag("PlayerSpawner").GetComponent<SpawnPlayer>();
+        playerSpawning = GameObject.Find("Player Spawner").GetComponent<PlayerSpawning>();
         gateController = transform.parent.gameObject.GetComponent<GateHolderController>();
         UpdateText();
     }
@@ -26,11 +25,8 @@ public class GateController : MonoBehaviour
         if ( other.tag == "Player" && isPlayerTouchGate)
         {
             isPlayerTouchGate = false;
-            Debug.Log("Close The Gate");
             gateController.CloseGate();
-            Debug.Log("Spawn Players");
-            spawnPlayer.Spawn(gateValue, gateType);
-            Debug.Log("Destroy");
+            playerSpawning.Spawn(gateValue, gateType);
             Destroy(this.gameObject);
         }
     }

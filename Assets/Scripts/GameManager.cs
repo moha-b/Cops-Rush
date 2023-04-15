@@ -40,8 +40,8 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         menuPanel.SetActive(false);
-        SpawnPlayer spawnPlayer = GameObject.Find("Player Spawner").GetComponent<SpawnPlayer>();
-        spawnPlayer.MovePlayer(); 
+        PlayerMovement playerMovement = GameObject.Find("Player Spawner").GetComponent<PlayerMovement>();
+        playerMovement.MovePlayer(); 
     }
 
     // Method to restart the game

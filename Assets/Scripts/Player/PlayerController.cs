@@ -1,62 +1,80 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Animator animator;
-    public GameObject bullet;
-    public Transform bulletTransform;
-    private Transform playerSpawnerCenter;
-    int bulletSpeed = 10;
-    float goToCenter = 5f;
-    bool isShootingOn = false;
-
-    private void Awake()
+    // Scripts
+    PlayerMovement playerMovement;
+    PlayerRotation playerRotation;
+    PlayerSpawning playerSpawning;
+    AudioController audioController;
+    
+    void Start()
     {
-        animator = GetComponent<Animator>();
-        playerSpawnerCenter = transform.parent.gameObject.transform;
-    }
-    private void FixedUpdate()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, playerSpawnerCenter.position, Time.fixedDeltaTime * goToCenter) ;
+        playerMovement = GetComponent<PlayerMovement>();
+        playerRotation = GetComponent<PlayerRotation>();
+        playerSpawning = GetComponent<PlayerSpawning>();
+        audioController = GameObject.Find("AudioSource").GetComponent<AudioController>();
     }
 
-    public void StartShooting()
+    private void OnTriggerEnter(Collider other)
     {
-        isShootingOn = true;
-        StartCoroutine(Shooting());
-        StartShootingAnim();
-    }
-    public void StartRunning()
-    {
-        isShootingOn = false;
-        StartRunningAnim();
-    }
-    IEnumerator Shooting()
-    {
-        while (isShootingOn)
+        if (other.tag == "Finish")
         {
-            Shoot();
-            yield return new WaitForSeconds(1f);
+            playerMovement.StopPlayer();
+            GameManager.Instance.ShowWinPanel();
+            audioController.PlayCongratesSound();
         }
     }
-    private void Shoot()
+
+    public void KillCop(GameObject cop)
     {
-        GameObject bulletInstance = Instantiate(bullet,bulletTransform.position,Quaternion.identity);
-        Rigidbody rigidbody = bulletInstance.GetComponent<Rigidbody>();
-        rigidbody.velocity = transform.forward * bulletSpeed;
-    }
-    
-    public void StartRunningAnim()
-    {
-        animator.SetBool("isShooting", false);
-        animator.SetBool("isRunning", true);
+        playerSpawning.RemoveFromList(cop);
+        DetectCopCount();
     }
 
-    public void StartShootingAnim()
+    private void DetectCopCount()
     {
-        animator.SetBool("isRunning", false);
-        animator.SetBool("isShooting", true);
+        if (playerSpawning.CopsNumber() <= 0)
+        {
+            playerMovement.StopPlayer();
+            GameManager.Instance.ShowFailPanel();
+            audioController.PlayFailSound();
+        }
+    }
+
+    public void EnemyDetected(GameObject enemy)
+    {
+        playerMovement.StopPlayer();
+        playerRotation.LookAtEnemy(enemy);
+        StartShooting();
+    }
+
+    public void AllZomibesKilled()
+    {
+        playerRotation.LookForward();
+        playerMovement.MovePlayer();
+        StartRunning();
+    }
+
+    private void StartShooting()
+    {
+        for(int i = 0;i < playerSpawning.CopsNumber();i++)
+        {
+            CopController cop = playerSpawning.getCop(i).GetComponent<CopController>();
+            cop.StartShooting();
+            audioController.PlayShootingSound();
+        }
+    }
+
+    private void StartRunning()
+    {
+        for (int i = 0; i < playerSpawning.CopsNumber(); i++)
+        {
+            CopController cop = playerSpawning.getCop(i).GetComponent<CopController>();
+            cop.StartRunning();
+        }
     }
 }
