@@ -6,10 +6,16 @@ public class PlayerSpawning : MonoBehaviour
 {
     [SerializeField] GameObject copPrefab;
     public List<GameObject> copList;
+    AudioController audioController;
+
+    private void Start()
+    {
+        audioController = GameObject.Find("AudioSource").GetComponent<AudioController>();
+    }
 
     public void Spawn(int gateValue, GateType gateType)
     {
-        //audioController.PlayGateSound();
+        audioController.PlayGateSound();
         if (gateType == GateType.ADDITION)
         {
             for (int i = 0; i < gateValue; i++)
