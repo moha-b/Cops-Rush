@@ -696,8 +696,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8318145459254447619}
   - component: {fileID: 3115147829427378619}
+  - component: {fileID: 7322868460640539744}
+  - component: {fileID: 7322868460640539746}
   m_Layer: 0
-  m_Name: Obstacle
+  m_Name: RotaryGrater
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -736,6 +738,39 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.4176204, y: 1, z: 1}
   m_Center: {x: 0.047733426, y: 0, z: 0}
+--- !u!95 &7322868460640539744
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2653086612198506722}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5f76468425b75cb42aad7646d2a22d5c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7322868460640539746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2653086612198506722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ba4eeae9fd591c458b865829d9a7317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2950763905760347192
 GameObject:
   m_ObjectHideFlags: 0
