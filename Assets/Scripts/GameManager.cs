@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     // Method to restart the game
     public void RestartGame()
     {
-        SceneManager.LoadScene("GameScene"); 
+        SceneManager.LoadScene("Level-1"); 
     }
 
     // Method to show the fail panel
